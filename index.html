@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+body {
+  background-color: white; 
+}
+
+.center {
+    margin: auto;
+    max-width: 50%;
+    padding: 10px;
+    text-align: center;
+    font-size: 40px;
+}
+
+#div1 {
+  margin-top: 100px;
+}
+
+#div2 {
+
+}
+
+.selected {
+  border: 3px solid blue;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<div class="center" id="div1">
+  Press 1 for youtube.com/tv
+</div>  
+  <br>
+  <br>
+<div class="center" id="div2">
+  Press 2 for youtube.de/tv
+</div>
+
+<script>
+document.getElementById("div1").style.border = "3px solid blue";
+
+var focus = 1;
+var yt_home = 'https://www.youtube.com/tv?fps=1&launch=menu&env_isVideoInfoVisible=1';
+var yt_home_de = yt_home + '&gl=DE&hl=de';
+
+function gotKey(e) {
+
+  if (e.key === "1"){
+  window.location = yt_home;
+  }
+  if (e.key === "2"){
+  window.location = yt_home_de;
+  }
+
+  if(e.keyCode === 40 && focus === 1){ // down
+    focus = 2;
+    document.getElementById("div1").style.border = "";
+    document.getElementById("div2").style.border = "3px solid blue";
+  }
+  if(e.keyCode === 38 && focus === 2){ // up
+    focus = 1;
+    document.getElementById("div2").style.border = "";
+    document.getElementById("div1").style.border = "3px solid blue";
+  }
+
+  if(e.keyCode === 13){ // enter
+    if(focus === 1){
+      window.location = yt_home;
+    }else{
+      window.location = yt_home_de;
+    }
+  }
+
+}
+
+document.addEventListener("keydown", gotKey);
+</script>
+
+</body>
+
+</html>
+
+
+
+
